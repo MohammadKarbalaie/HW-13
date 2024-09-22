@@ -3,11 +3,11 @@ import { Coinput } from "./Coinputs";
 export function Body(){
     return(
         <>
-        <div className="flex flex-row mt-12 mx-auto justify-center items-center">
+        <div className="w-full flex sm:flex-col xl:flex-row lg:flex-row mt-12 mx-auto justify-center items-center">
                 <div className="">
                     <Coinput/>
                 </div>
-                <div className="flex flex-col ml-28 -mt-[450px] w-[750px]">
+                <div className="w-[500px] flex flex-col ml-28 sm:mt-[60px] lg:-mt-[450px] xl:-mt-[450px]">
                         <div className="flex flex-col gap-6 items-start">
                             <h2 className="font-semibold text-xl pb-4">Office</h2>
                             submit

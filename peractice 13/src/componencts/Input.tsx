@@ -1,29 +1,49 @@
-import React from "react";
-interface  Inputsvalues{
-    password: string
-}
+import React from 'react';  
 
-type props = {
-    type: "password" | "email" | "text";
-    placeholder: string;
-    
-};
+interface InputProps {  
+  type: 'text' | 'password' | 'email';  
+  name: string; // افزودن پروپ name  
+  placeholder: string;  
+  value: string;  
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;  
+  validate: (value: string) => boolean;  
+  errorMessage: string;  
+}  
 
-export function Input({type,placeholder}:props){
-    // const [password , setpassword] = React.useState<String>(""); 
-    const [values, setValues] = React.useState<Inputsvalues>({ password: "" }); 
-        const inputhandler = (e: React.ChangeEvent<HTMLInputElement>)=>{setValues({ password : e.target.value})
-        console.log(e.target.value);
-        }
+const Input: React.FC<InputProps> = ({  
+  type,  
+  name, // دریافت پروپ name  
+  placeholder,  
+  value,  
+  onChange,  
+  validate,  
+  errorMessage,  
+}) => {  
+  const [isValid, setIsValid] = React.useState(true);  
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {  
+    const newValue = e.target.value;  
+    onChange(e);  
+    setIsValid(validate(newValue));  
+  };  
 
-    return(
-        <input 
-        type={type}
-        onChange={inputhandler} 
-        value={values.password} 
+  return (  
+    <div className="mb-6"> {/* فضای بین ورودی‌ها */}  
+      <input  
+        type={type}  
+        name={name} // اضافه کردن name در ورودی  
         placeholder={placeholder}  
-        className="w-full py-2 border-b-2 px-20 mb-12 outline-none" />
-    )
-}
+        value={value}  
+        onChange={handleInputChange}  
+        className={`w-full py-2 border-b-2 px-20 mb-12 outline-none ${  
+          isValid ? 'border-gray-300' : 'border-red-500'  
+        }`}  
+      />  
+      {errorMessage && !isValid && (  
+        <div className="text-red-500 text-sm">{errorMessage}</div>  
+      )}  
+    </div>  
+  );  
+};  
 
+export default Input;

@@ -4,7 +4,7 @@ import App from './App.tsx'
 import './index.css'
 import { Navbar } from './componencts/Navabar.tsx'
 import { Contact } from './componencts/Contact.tsx'
-import { Body } from './componencts/Body.tsx'
+import { Body} from './componencts/Body.tsx'
 
 
 createRoot(document.getElementById('root')!).render(

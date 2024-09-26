@@ -13,9 +13,9 @@ const Checkbox: React.FC<CheckboxProps> = ({ checked, onChange }) => {
           type="checkbox"  
           checked={checked}  
           onChange={onChange}  
-          className="mr-2"  
+          className="mr-2 mt-4"  
         />  
-        <label className="w-full absolute -top-[1px]">I want to protect my data by signing an NDA</label>  
+        <label className="absolute mt-2">I want to protect my data by signing an NDA</label>  
     </div>  
   );  
 };  

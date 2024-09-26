@@ -2,7 +2,7 @@ import React from 'react';
 
 interface InputProps {  
   type: 'text' | 'password' | 'email';  
-  name: string; // افزودن پروپ name  
+  name: string;  
   placeholder: string;  
   value: string;  
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;  
@@ -12,7 +12,7 @@ interface InputProps {
 
 const Input: React.FC<InputProps> = ({  
   type,  
-  name, // دریافت پروپ name  
+  name, 
   placeholder,  
   value,  
   onChange,  
@@ -28,10 +28,10 @@ const Input: React.FC<InputProps> = ({
   };  
 
   return (  
-    <div className="mb-6"> {/* فضای بین ورودی‌ها */}  
+    <div className="mb-6">   
       <input  
         type={type}  
-        name={name} // اضافه کردن name در ورودی  
+        name={name}  
         placeholder={placeholder}  
         value={value}  
         onChange={handleInputChange}  

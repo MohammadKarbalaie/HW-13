@@ -1,84 +1,80 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import Input from "./Input";
 import File from "./FileUpload";
 import Checkbox from "./Checkbox";
 import Btn from "./Btn";
 
-export function Coinput() {  
-    interface FormData {  
-      companyName: string;  
-      natureOfBusiness: string;  
-      address: string;  
-      postcode: string;  
-      contactName: string;  
-      contactEmail: string;  
-      contactPhone: string;  
-      website: string;  
-      idea: string;  
-      file: File | undefined;  
-      dataProtectionConsent: boolean;  
-    }  
-  
-    const Body: React.FC = () => {  
-      const [formData, setFormData] = useState<FormData>({  
-        companyName: "",  
-        natureOfBusiness: "",  
-        address: "",  
-        postcode: "",  
-        contactName: "",  
-        contactEmail: "",  
-        contactPhone: "",  
-        website: "",  
-        idea: "",  
-        file: undefined,  
-        dataProtectionConsent: false,  
-      });  
-  
-      const [isValid, setIsValid] = useState(false);  
-  
-      const validateForm = useCallback(() => {  
-        const isValidForm = Object.values(formData).every((value) => value !== "");  
-        setIsValid(isValidForm);  
-      }, [formData]);  
-  
-      useEffect(() => {  
-        validateForm();  
-      }, [validateForm]);  
-  
-      const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {  
-        const { name, value } = e.target;  
-        setFormData({ ...formData, [name]: value });  
-      };  
-  
-      const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {  
-        const file = e.target.files && e.target.files[0];  
-        setFormData({ ...formData, file: file || undefined });  
-      };  
-  
-      const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {  
-        const checked = e.target.checked;  
-        setFormData({ ...formData, dataProtectionConsent: checked });  
-      };  
-  
-      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {  
-        event.preventDefault();  
-        const subData = {  
-          companyName: formData.companyName,  
-          natureOfBusiness: formData.natureOfBusiness,  
-          address: formData.address,  
-          postcode: formData.postcode,  
-          contactName: formData.contactName,  
-          contactEmail: formData.contactEmail,  
-          contactPhone: formData.contactPhone,  
-          website: formData.website,  
-          idea: formData.idea,  
-        };  
-        console.log(subData);  
-      };  
-  
+export function Coinput() {
+  interface FormData {
+    companyName: string;
+    natureOfBusiness: string;
+    address: string;
+    postcode: string;
+    contactName: string;
+    contactEmail: string;
+    contactPhone: string;
+    website: string;
+    idea: string;
+    file: File | undefined;
+    dataProtectionConsent: boolean;
+  }
+
+  const [formData, setFormData] = useState<FormData>({
+    companyName: "",
+    natureOfBusiness: "",
+    address: "",
+    postcode: "",
+    contactName: "",
+    contactEmail: "",
+    contactPhone: "",
+    website: "",
+    idea: "",
+    file: undefined,
+    dataProtectionConsent: false,
+  });
+
+  const [isValid, setIsValid] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+
+    const isValidForm = Object.values({ ...formData, [name]: value }).every(
+      (value) => value !== ""
+    );
+    setIsValid(isValidForm);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    setFormData({ ...formData, file: file || undefined });
+  };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = e.target.checked;
+    setFormData({ ...formData, dataProtectionConsent: checked });
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const subData = {
+      companyName: formData.companyName,
+      natureOfBusiness: formData.natureOfBusiness,
+      address: formData.address,
+      postcode: formData.postcode,
+      contactName: formData.contactName,
+      contactEmail: formData.contactEmail,
+      contactPhone: formData.contactPhone,
+      website: formData.website,
+      idea: formData.idea,
+    };
+    console.log(subData);
+  };
+
       return (  
         <form onSubmit={handleSubmit}>  
-          <div className="w-full flex flex-col ">  
+          <div className="w-full flex flex-col relative">  
             <Input  
               type="text"  
               name="companyName"  
@@ -170,7 +166,7 @@ export function Coinput() {
             <Btn disabled={!isValid}>  
               SUBMIT  
             </Btn>  
-          <div className="absolute top-[1500px] w-80 -ml-[150px] pb-20">
+          <div className=" top-[1340px] w-80 -ml-[150px] pb-20">
             <Checkbox
               checked={formData.dataProtectionConsent}
               onChange={handleCheckboxChange}
@@ -180,5 +176,4 @@ export function Coinput() {
       </form>
     );
   };
-  return <Body />;
-}
+

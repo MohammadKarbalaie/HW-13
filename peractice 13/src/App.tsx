@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <div className='max-w-[1440px] mx-[auto] my-[0] p-8 text-center'>
+      <div className='max-w-[1440px] mx-auto p-8 text-center'>
       <Navbar/>
       <Contact/>
       <Body/>
